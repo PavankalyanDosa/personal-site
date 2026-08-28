@@ -1,90 +1,300 @@
-# Adapting this Website
+# Adapting This Website
 
-Many people have contacted me about adapting this website. I have tried to make things as simple as possible. There are still bugs. I am sorry. If you find a bug, please email me (help@mldangelo.com), submit a pull request (I'll buy you a coffee as a thank you), or submit an issue.
+A coding agent can handle the repository changes once you provide your
+identity, content, assets, and target URL. You decide what to publish, and
+account or DNS changes still require your approval.
 
-You may wish to fork this repository or remove my remote origin and add your own. Go [here](https://help.github.com/articles/changing-a-remote-s-url/) for more information on how to change remotes.
+## Set up the workspace
 
-## Before you start
-
-1. Make sure you have a good text editor. I recommend [Visual Studio Code](https://code.visualstudio.com/).
-1. Review `src/App.js`. This file contains all of our route definitions. If you wish to add or remove a page, you should do so here.
-
-## Checklist
-
-### Setup
-
-1. Run the project before making any modifications by following the set up and running instructions in the main [README.md](https://github.com/mldangelo/personal-site#set-up).
-1. Change `homepage` in `package.json` to reflect where you plan to host the site. This is important for static exporting via react-snap. This also changes your path when developing locally. For example, a homepage of `mldangelo.com` places the site at `localhost:3000` and a homepage of `https://mldangelo.github.io/personal-site/` places the site at `localhost:3000/personal-site/`. If you plan to host at on a path such as `https://[your-github-username].github.io/[your-repo-name]`, you should set this now so that your development environment mirrors your production environment.
-1. Create a `.env` file. To do this, run:
-
-    ```bash
-    cp sample.env .env
-    ```
-
-    and set values as appropriate. Most people will not need to modify this file.
-
-### Adapt Content
-
-I recommend keeping the project running as you go (with `npm start`) to help correct mistakes quickly.
-
-1. Start by changing text in the sidebar. This file is located at `src/components/Template/SideBar.js`.
-1. Add an image of yourself in `public/images/me.jpg`. Your image should be approximately 256 x 256 pixels. Larger and smaller is ok, but avoid very large images to save bandwidth. If you need help resizing your image, Adobe makes a great online tool [here](https://www.adobe.com/photoshop/online/resize-image.html).
-1. Modify the text on the homepage. This file is located at `src/pages/Index.js`.
-1. Modify the files in `src/data/resume/` next.
-1. Modify all of the other files in the `src/data/` directory.
-1. You've finished modifying >95% of the pages. Search through the rest of the files for references to `Michael` or `Angelo` and change values to your name.
-1. Change or remove the favicon in `public/index.html`. [This](https://realfavicongenerator.net/) website may be helpful.
-
-### Deploy
-
-See deployment instructions [here](https://github.com/mldangelo/personal-site#deploying-to-github-pages). If you plan to use a custom url, modify `public/CNAME` and enter your URL. You can run:
+Ask your agent to use the Node version in `.nvmrc`, install the locked
+dependencies, and start the development server. To set up the fork manually,
+run:
 
 ```bash
-echo "[your-custom-domain][.com]" > public/CNAME
+git clone https://github.com/YOUR-USER/personal-site.git
+cd personal-site
+nvm install
+npm ci
+npm run dev
 ```
 
-as a shortcut.
+Open [http://localhost:3000](http://localhost:3000). If you use another version
+manager, choose a release accepted by `engines.node` in `package.json`.
 
-I recommend purchasing your own domain name from [Google Domains](https://domains.google). The project is pre-configured to automatically deploy to github pages via the deploy github action. Go to `https://github.com/[your-github-username]/[your-repo-name]/settings` and configure accordingly:
+## Copyable requests
 
-<center><img src="images/gh-pages.png"></center>
+Use the full rebrand prompt in the
+[README](../README.md#adapt-it-with-a-coding-agent) for a first pass. For a
+smaller change, copy one of these.
 
-Next, configure your domains DNS record. See [here](https://help.github.com/articles/using-a-custom-domain-with-github-pages/) for more information. After a few minutes, your website should be live on your domain.
+### Manage writing
 
-That's it. Thank you for reading. If you go through this guide and run into issues or areas you find unclear, please consider submitting a PR to help others like you.
+```text
+Read AGENTS.md and work on a topic branch. Do not commit, push, merge, or change
+account settings unless I explicitly authorize it.
+Manage writing for this site as follows: [ADD, UPDATE, OR REMOVE CONTENT].
+Use content/writing/ for local posts and src/data/writing.ts for external
+links. Preserve draft isolation, RSS, the homepage writing section, metadata,
+and valid post slugs. Pair each frontmatter `image` with `imageAlt`, and give
+Markdown images descriptive alt text. Keep at least one published post unless I
+asked you to remove writing completely. Run the full validation suite and
+report unresolved content decisions or validation failures.
+```
 
-## Common Pitfalls
+### Remove a page or feature
 
-Here are answers to questions I've been asked at least twice. I've attempted to simplify development and improve documentation throughout the project to address them. This section is updated frequently.
+```text
+Read AGENTS.md and work on a topic branch. Do not commit, push, merge, or change
+account settings unless I explicitly authorize it.
+Remove [PAGE OR FEATURE] completely. Before deleting anything, trace its route,
+navigation entry, homepage references, data imports, sitemap entries, schema,
+feed integration, styles, tests, and export verifier checks. Do not change
+unrelated routes or URLs. Run the full validation suite and report any
+remaining references.
+```
 
-1. My CSS isn't rendering, or I see a 404 instead of my site:
+### Change the visual identity
 
-    Make sure the `homepage` field of `package.json` points to where you plan to host your site index. Also, double check that you created a `CNAME` file (see deployment instructions above). If neither of these work, please open an issue or send me an [email](mailto:help@mldangelo.com).
+```text
+Read AGENTS.md and work on a topic branch. Do not commit, push, merge, or change
+account settings unless I explicitly authorize it.
+Rebrand the visual identity using [COLORS], [FONTS], [PORTRAIT], and
+[DESIGN DIRECTION]. Work through the existing semantic tokens. Keep light and
+dark themes, print behavior, accessibility, and the signal-color rules intact.
+Regenerate and verify the share card, then run the full validation suite.
+```
 
-2. LF / CRLF issues with eslint.
+### Prepare deployment
 
-    This is a common Windows development pitfall. See @[FrozenFury](https://github.com/FrozenFury)'s [comment](https://github.com/mldangelo/personal-site/issues/263#issuecomment-759216299) for how to update your eslint config to resolve this issue.
+```text
+Read AGENTS.md and work on a topic branch. Do not commit, push, merge, or change
+account settings unless I explicitly authorize it.
+Read the deployment reference in docs/adapting-guide.md, then prepare this
+repository for [FINAL URL] on [HOST]. Make every required repository change,
+run the full validation suite, and inspect out/. Do not create secrets or
+modify DNS. Report the exact external steps that remain.
+```
 
-3. master / main
+### Add a social link
 
-    Github decided to rename the default branch of all of their repositories from master to main, and so did I. See their reasoning [here](https://github.com/github/renaming). If you're trying to pull in recent changes, consider renaming your own branch, or just create a merge commit from my main.
+```text
+Read AGENTS.md and work on a topic branch. Do not commit, push, merge, or change
+account settings unless I explicitly authorize it.
+Add my [PLATFORM] profile at [URL]. Follow the existing src/data/contact.ts
+pattern and reuse the installed Font Awesome packages. Update affected tests,
+run the relevant checks, and show me the diff.
+```
 
-4. Google Analytics Warnings when exporting.
+### Add Google Analytics
 
-    Either set up Google Analytics or disable the `Analytics.js` component. Read more about [react-ga](https://github.com/react-ga/react-ga).
+```text
+Read AGENTS.md and work on a topic branch. Do not commit, push, merge, or change
+account settings unless I explicitly authorize it.
+Configure this fork to use GA4 measurement ID [G-XXXXXXX]. Use the existing
+NEXT_PUBLIC_GA_TRACKING_ID integration. Put the local value in .env.local and
+keep that file untracked. Tell me which GitHub repository variable production
+needs.
+```
 
-5. How do I configure git? What is nano?
+## Reference map
 
-    Read through [git-scm](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)'s excellent documentation. I recommend setting your default text editor to something you're comfortable with.I like to use vim for writing commit messages.
+### Identity and contact details
 
-6. Can I host at [username.github.io]?
+Identity data starts in shared files, but some text and links are hard-coded.
 
-    Sure, see github's documentation [here](https://pages.github.com/).
+| Content                                | Location                                                       |
+| -------------------------------------- | -------------------------------------------------------------- |
+| Name, role, employer, focus, and email | `src/data/profile.json`                                        |
+| Canonical URL and shared descriptions  | `src/lib/utils.ts`                                             |
+| Social links                           | `src/data/contact.ts`                                          |
+| Homepage biography and employer links  | `src/components/Template/Hero.tsx`                             |
+| Logo initials                          | `src/components/Template/Navigation.tsx`                       |
+| Footer source link                     | `src/components/Template/Footer.tsx`                           |
+| Portrait (when one has been supplied)  | Add a portrait asset and a dedicated themed portrait component |
+| Favicon files and web app name         | `public/images/favicon/`                                       |
+| Sitemap URL for crawlers               | `public/robots.txt`                                            |
+| RSS title and description              | `app/feed.xml/route.ts`                                        |
 
-7. How do I disable eslint?
+Page titles and descriptions also contain personal copy in `app/layout.tsx` and
+the `page.tsx` files under `app/`. Structured data is assembled in
+`src/lib/schema.ts`.
 
-    `echo "*\n" > .eslintignore` Although I really don't recommend it. Linters are good. They help prevent errors, enforce uniform style so that you can spend less time thinking about formatting and more time reading code, and eliminate easy nits for code reviews. If the rules aren't working for you, you should change them. See eslint's documentation [here](https://eslint.org/docs/about/) for more information.
+### About, résumé, and projects
 
-8. Why is my website rendering the readme file?
+| Content        | Location                     |
+| -------------- | ---------------------------- |
+| About page     | `src/data/about.ts`          |
+| Work history   | `src/data/resume/work.ts`    |
+| Education      | `src/data/resume/degrees.ts` |
+| Skills         | `src/data/resume/skills.ts`  |
+| Courses        | `src/data/resume/courses.ts` |
+| Projects       | `src/data/projects.ts`       |
+| Project images | `public/images/projects/`    |
 
-    See 1. above and make sure that `.nojekyll` still exists in `public`. This file directs github to not attempt to render the website with Jekyll.
+The current role appears in the profile, homepage, résumé, and page metadata.
+Update those together.
+
+### Writing
+
+Writing comes from two places:
+
+- Markdown posts in `content/writing/`
+- External articles in `src/data/writing.ts`
+
+Both sources appear on `/writing/`. Dated entries can also appear on the
+homepage and in the RSS feed.
+
+Local posts are Markdown files. The filename becomes the URL slug, so
+`my-post.md` becomes `/writing/my-post/`. Valid filenames use lowercase letters
+and numbers separated by single hyphens.
+
+```markdown
+---
+title: 'Your Post Title'
+date: '2026-01-15'
+description: 'A short description for previews and search results.'
+---
+
+Your content here.
+```
+
+The required fields are `title`, `date`, and `description`. `draft: true` shows
+a post during development without including it in the production export. An
+optional `image` must be a root-relative path under `public/` and must be paired
+with `imageAlt`.
+
+The production export requires at least one published post. It cannot build the
+dynamic post route when `generateStaticParams()` has no published slugs.
+
+Removing the Writing link from `src/data/routes.ts` only hides it from
+navigation. The homepage still promotes writing, and the routes remain
+available by URL.
+
+Full removal requires a consumer search before any files are deleted:
+
+```bash
+rg -n -i "writing|feed\\.xml|getWritingItems|getAllPosts" app src scripts
+```
+
+A complete removal touches the writing routes, feed, content loaders, homepage
+section, sitemap, schema, export verifier, styles, and tests. Run a production
+build after the refactor.
+
+### Visual identity
+
+| Setting                    | Location                                |
+| -------------------------- | --------------------------------------- |
+| Light and dark colors      | `app/styles/tokens/colors.css`          |
+| Type scale                 | `app/styles/tokens/typography.css`      |
+| Font files and assignments | `app/fonts.ts`                          |
+| Favicon                    | `public/images/favicon/`                |
+| Default metadata           | `app/layout.tsx`, `src/lib/metadata.ts` |
+| Share-card generator       | `scripts/generate-og.mjs`               |
+
+After changing profile fields on the share card or its design, run:
+
+```bash
+npm run og
+npm run og:check
+```
+
+`npm run og` updates `public/og.png` and `public/og.meta.json`. The image and
+metadata must stay in sync.
+
+## Audit the result
+
+Require the final search output and validation results, not only a completion
+claim. This search covers the current name, domain, handle, employer, and
+repository:
+
+```bash
+rg -n -i "Michael|mldangelo|dangelosaurus|mldangelo\\.com|OpenAI|Promptfoo" \
+  app content public scripts src package.json README.md
+```
+
+Repeat it with any other upstream names or URLs the search uncovers. This
+catches details in page descriptions, tests, images, and links that a checklist
+can miss.
+
+Some tests assert the site's public content, so exact-text expectations may
+need updates. Do not weaken structural checks for metadata, canonical URLs,
+draft isolation, accessibility, or export integrity.
+
+The full validation suite is:
+
+```bash
+npm run format
+npm run lint
+npm run type-check
+npm test
+npm run og:check
+npm run build
+npm run verify-export
+```
+
+## Deployment reference
+
+### Changes inside the repository
+
+A coding agent can prepare and verify the repository:
+
+- Set `SITE_URL` in `src/lib/utils.ts` to the final public URL without a
+  trailing slash.
+- Set `homepage` in `package.json` to the same URL with a trailing slash.
+- Update `public/robots.txt` and other URL-bearing files.
+- Build the site and inspect `out/`.
+
+The site works as written at a root URL, such as a custom domain. A GitHub user
+or organization site also has a root URL, but its repository must be named
+[`<owner>.github.io`](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+A fork left under another repository name is a project site at
+`https://YOUR-USER.github.io/REPOSITORY/` and needs more work. The workflow
+injects Next's `basePath`, but raw asset paths and absolute URLs created by the
+application still assume a root deployment. Updating `SITE_URL` and `homepage`
+alone is not enough for that case.
+
+### Actions outside the repository
+
+GitHub settings, deployment accounts, and DNS changes require account access.
+An agent can perform them only with explicit authorization.
+
+For GitHub Pages:
+
+1. In the fork's **Actions** tab, enable workflows. GitHub
+   [disables workflows in forks by default](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflows-in-forked-repositories).
+2. To use the default root URL without a custom domain, rename the fork to
+   `YOUR-USER.github.io` in **Settings > General**.
+3. In **Settings > Pages**, choose **GitHub Actions** as the source.
+4. For a custom domain,
+   [verify the domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages)
+   in your profile or organization settings before attaching it to the
+   repository.
+5. Add the custom domain in **Settings > Pages** before changing its routing
+   records.
+6. Configure DNS using
+   [GitHub's custom-domain guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+7. After reviewing the branch, push or merge it to `main` to deploy.
+
+GitHub ignores `public/CNAME` when a custom Actions workflow publishes the
+site. The agent can delete the upstream file from the fork.
+
+For another static host, the agent can build `out/` and prepare the deployment.
+Uploading it to the hosting account still requires explicit authorization. A
+subpath deployment also needs a matching Next `basePath` and an audit of raw
+assets and absolute URL construction.
+
+## Troubleshooting
+
+| Problem                                 | Check                                                                                         |
+| --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `EBADENGINE` warning or install failure | Run `nvm install`, then retry `npm ci`                                                        |
+| Port 3000 is in use                     | Run `npm run dev -- -p 3001`                                                                  |
+| Images do not appear                    | Use a URL such as `/images/photo.jpg`, not `public/images/photo.jpg`                          |
+| `missing "generateStaticParams()"`      | Keep at least one published Markdown post                                                     |
+| Assets return 404 on a project site     | Review the repository subpath limitation in the [deployment reference](#deployment-reference) |
+| The export verifier fails               | Run `npm run build` first, then inspect the named file or route                               |
+
+## Getting help
+
+Open an [issue](https://github.com/mldangelo/personal-site/issues) when the
+instructions are unclear or appear to be wrong.

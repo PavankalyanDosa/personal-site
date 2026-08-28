@@ -1,80 +1,121 @@
-# Personal Website
+# Pavankalyan Dosa: Personal Site
 
-Welcome to my [personal website](https://mldangelo.com)! This is an [MIT licensed](https://github.com/mldangelo/personal-site/blob/main/LICENSE) React-based Jamstack application. It offers a simple interface, easy modifications, static export capabilities, and free automatic deployments via [GitHub Pages](https://pages.github.com/).
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pavankalyandosa/personal-site/node.js.yml?branch=main)](https://github.com/pavankalyandosa/personal-site/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/pavankalyandosa/personal-site?style=social)](https://github.com/pavankalyandosa/personal-site/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/pavankalyandosa/personal-site?style=social)](https://github.com/pavankalyandosa/personal-site/network/members)
 
-## 🚀 Features
+The source for [pavankalyandosa.com](https://pavankalyandosa.com), a portfolio, résumé,
+project archive, and writing site built with
+[Next.js](https://nextjs.org/), [React](https://react.dev/),
+[TypeScript](https://www.typescriptlang.org/), and
+[Tailwind CSS](https://tailwindcss.com/).
 
-- Built with modern JavaScript, using tools and frameworks like [create-react-app](https://github.com/facebook/create-react-app), [React-Router](https://reactrouter.com/), and SCSS.
-- Automated workflows via [GitHub Actions](https://github.com/features/actions).
-- And more!
+The architecture is reusable and MIT licensed. The content and visual design
+are personal, so a fork needs a full rebrand.
 
-## 🛠 Adapting this Project
+**[Visit the live site →](https://pavankalyandosa.com)**
 
-Want to create your own personal website based on this project? You can set it up in as little as 30 minutes! Follow the setup instructions below and check out the **[detailed guide and checklist](./docs/adapting-guide.md)** on adapting this project to your needs. If you encounter any challenges, don't hesitate to contact me through an issue or email at [help@mldangelo.com](mailto:help@mldangelo.com).
+## What is here
 
-## 🤝 Contributing
+- A statically exported Next.js 16 site deployed to GitHub Pages.
+- A responsive light/dark design system built from semantic CSS tokens.
+- Markdown writing with drafts, RSS, and page metadata.
+- A filterable résumé that still prints in full.
+- Tests for components, content, metadata, and the final static export.
 
-Your contributions are warmly welcomed! If you wish to contribute, please review the [design goals](./docs/design-goals.md), [roadmap](./docs/roadmap.md), and [contributing guidelines](./docs/contributing.md). For any bugs or suggestions, you can reach out via email, submit a pull request (I'd be happy to get you a coffee as a thank-you!), or open an issue.
+## Get started
 
-## 🔧 Dependencies
+### With a coding agent
 
-Ensure you have [node](https://nodejs.org/) >= v16. Optionally, use [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to manage node versions.
+Open your fork in a coding agent and ask:
 
-## 🚀 Setup and Running
+```text
+Read AGENTS.md, use the Node version in .nvmrc, install the locked
+dependencies, and start the development server. Do not change the site yet.
+Tell me the local URL and report any setup failure with its exact output.
+```
 
-1. Clone the repository:
+### Manual setup
 
-    ```bash
-    git clone git://github.com/mldangelo/personal-site.git
-    cd personal-site
-    ```
+With [GitHub CLI](https://cli.github.com/) and
+[nvm](https://github.com/nvm-sh/nvm) installed:
 
-2. (Optional) Ensure you're on Node v16 or higher:
+```bash
+gh repo fork pavankalyandosa/personal-site --clone
+cd personal-site
+nvm install
+npm ci
+npm run dev
+```
 
-    ```bash
-    nvm install
-    node --version
-    ```
+If you use another version manager, choose a release accepted by `engines.node`
+in `package.json`.
 
-3. Install dependencies:
+### GitHub Codespaces
 
-    ```bash
-    npm install
-    ```
+1. Click **Fork** at the top of this page.
+2. In your fork, click **Code**, choose **Codespaces**, then create a codespace.
+3. Run:
 
-4. Start the application:
+```bash
+nvm install
+npm ci
+npm run dev
+```
 
-    ```bash
-    npm start
-    ```
+Codespaces provides the tools, so you do not need to install them locally.
 
-By default, the application should be available at [http://localhost:3000/](http://localhost:3000/).
+## Adapt it with a coding agent
 
-## 🚢 Deploying
+When you are ready to customize the site, give the agent your résumé, profile
+details, links, images, and intended site URL. Try:
 
-### Deploying to GitHub Pages
+```text
+Read AGENTS.md and docs/adapting-guide.md, set up the repository, then rebrand
+this fork for [NAME] with the details and assets I provide. Work on a topic
+branch and preserve the current routes and design unless I say otherwise.
+Inventory the existing posts, external writing, résumé, and projects before
+changing the shared identity. Do not relabel that content as mine. Ask whether
+unmatched personal content should keep its original attribution, be replaced,
+or be removed. Use the guide's reference map to update every identity surface
+and generated asset. Search for remaining upstream details and run the full
+validation suite. Do not commit, push, merge, change GitHub settings, create
+secrets, or modify DNS. Report the external steps that remain.
+```
 
-1. Update the environment variables and Git remote URL in [`.github/workflows/github-pages.yml`](.github/workflows/github-pages.yml).
-2. Adjust the `homepage` value in `package.json` based on your hosting preferences.
-3. Planning on using a custom domain? Update `public/CNAME`. Otherwise, remove it.
+The **[adapting guide](./docs/adapting-guide.md)** has focused prompts for
+writing, feature removal, visual changes, and deployment, plus a map of the
+files an agent should inspect.
 
-After making a commit to `main`, simply push your changes, and the deployment will be handled automatically.
+## Commands
 
-### Static Export
+```bash
+npm run dev             # Start the development server
+npm run format          # Format with Prettier and Biome
+npm run lint            # Run Biome checks
+npm run type-check      # Run TypeScript
+npm test                # Run Vitest
+npm run build           # Build the production static export
+npm run verify-export   # Inspect the generated HTML and XML
+npm run og              # Regenerate the share card
+npm run og:check        # Verify the committed share card is current
+```
 
-For a static export without deploying to GitHub Pages:
+CI checks formatting, linting, types, the share card, tests, the production
+build, and the exported site on every pull request.
 
-- Remove or disable `.github/workflows/github-pages.yml`.
-- Execute:
+## Deploy
 
-    ```bash
-    npm run predeploy
-    ```
+Pushes to `main` deploy the same static build that CI validates. See the
+[adapting guide](./docs/adapting-guide.md#deployment-reference) for URL and
+domain setup.
 
-This will generate a static version in `personal-site/build/` which you can host or deploy to a CDN.
+## Contributing
 
-## 🙌 Acknowledgements
+See the [contributing guide](./docs/contributing.md) for setup, branch and commit
+conventions, validation, and pull request expectations.
 
-- Initial template from [Future Imperfect](https://html5up.net/future-imperfect) by [@ajlkn](https://github.com/ajlkn) for [HTML5 UP](html5up.net).
-- Special thanks to [@typpo](https://github.com/typpo) for tirelessly answering all of my node.js and react questions.
-- Kudos to [@notrueblood](https://github.com/notrueblood)[<sup>[1]</sup>](https://github.com/mldangelo/personal-site/pull/218) and [@sjhsieh](https://github.com/sjhsieh)[<sup>[2]</sup>](https://github.com/mldangelo/personal-site/issues/168) for their constructive feedback.
+## License
+
+[MIT](./LICENSE). Use it however you want.
