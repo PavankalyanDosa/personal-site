@@ -44,7 +44,7 @@ describe('routes', () => {
     expect(routes).toContainEqual(
       expect.objectContaining({
         label: 'Photography',
-        path: 'https://photos.pavankalyandosa.com',
+        path: 'https://vsco.co/kalyan-devv/gallery',
         external: true,
       }),
     );
