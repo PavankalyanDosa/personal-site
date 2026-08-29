@@ -43,9 +43,15 @@ describe('Hero', () => {
   it('renders one primary CTA and one quieter resume link', () => {
     render(<Hero />);
 
-    const aboutButton = screen.getByRole('link', { name: /about me/i });
-    expect(aboutButton).toHaveAttribute('href', '/about');
-    expect(aboutButton).toHaveClass('button');
+    const photographyButton = screen.getByRole('link', {
+      name: /view photography/i,
+    });
+    expect(photographyButton).toHaveAttribute(
+      'href',
+      'https://photos.pavankalyandosa.com',
+    );
+    expect(photographyButton).toHaveAttribute('target', '_blank');
+    expect(photographyButton).toHaveClass('button');
 
     const resumeButton = screen.getByRole('link', { name: /view resume/i });
     expect(resumeButton).toHaveAttribute('href', '/resume');
