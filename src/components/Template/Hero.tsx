@@ -16,12 +16,12 @@ export default function Hero() {
 
           <div className="hero-cta">
             <a
-              href="https://photos.pavankalyandosa.com"
+              href="https://vsco.co/kalyan-devv/gallery"
               className="button"
               target="_blank"
               rel="noopener noreferrer"
             >
-              View Photography
+              About Me
               <span className="sr-only"> (opens in new tab)</span>
             </a>
             <a href="/resume" className="hero-resume-link">

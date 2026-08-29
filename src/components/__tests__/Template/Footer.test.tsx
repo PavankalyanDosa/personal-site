@@ -73,7 +73,7 @@ describe('Footer', () => {
     const photography = screen.getByRole('link', { name: /photography/i });
     expect(photography).toHaveAttribute(
       'href',
-      'https://photos.pavankalyandosa.com',
+      'https://vsco.co/kalyan-devv/gallery',
     );
     expect(photography).toHaveAttribute('target', '_blank');
     expect(photography).toHaveAttribute('rel', 'noopener noreferrer');

@@ -24,9 +24,10 @@ describe('professional content information architecture', () => {
   it('promotes the external photography site from the homepage', () => {
     render(<HomePage />);
 
-    expect(
-      screen.getByRole('link', { name: /view photography/i }),
-    ).toHaveAttribute('href', 'https://photos.pavankalyandosa.com');
+    expect(screen.getByRole('link', { name: /about me/i })).toHaveAttribute(
+      'href',
+      'https://vsco.co/kalyan-devv/gallery',
+    );
   });
 
   it('does not ship retired Stats page styles', () => {

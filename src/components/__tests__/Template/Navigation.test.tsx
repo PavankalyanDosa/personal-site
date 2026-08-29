@@ -57,7 +57,7 @@ describe('Navigation', () => {
     expect(screen.getByRole('link', { name: /contact/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /photography/i })).toHaveAttribute(
       'href',
-      'https://photos.pavankalyandosa.com',
+      'https://vsco.co/kalyan-devv/gallery',
     );
     expect(
       screen.queryByRole('link', { name: /archive/i }),
