@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
@@ -19,6 +21,28 @@ describe('retired writing information architecture', () => {
 });
 
 describe('professional content information architecture', () => {
+  it('promotes the external photography site from the homepage', () => {
+    render(<HomePage />);
+
+    expect(
+      screen.getByRole('link', { name: /view photography/i }),
+    ).toHaveAttribute('href', 'https://photos.pavankalyandosa.com');
+  });
+
+  it('does not ship retired Stats page styles', () => {
+    const contentStyles = readFileSync(
+      join(process.cwd(), 'app/styles/pages/content.css'),
+      'utf8',
+    );
+    const printStyles = readFileSync(
+      join(process.cwd(), 'app/styles/print.css'),
+      'utf8',
+    );
+
+    expect(contentStyles).not.toMatch(/STATS PAGE|stat-table/);
+    expect(printStyles).not.toContain('.stats-title');
+  });
+
   it('keeps inherited courses and references out of the resume navigation', () => {
     render(<ResumePage />);
 
